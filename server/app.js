@@ -39,13 +39,10 @@ mongoose
 // ROUTES - https://expressjs.com/en/starter/basic-routing.html
 // Devs Team - Start working on the routes here:
 // ...
-
-//COHORTS ROUTES
+ROUTES;
 app.use("/", studentRouter);
 app.use("/", cohortRouter);
 
-//
-//STUDENTS ROUTES
 //
 
 // START SERVER
