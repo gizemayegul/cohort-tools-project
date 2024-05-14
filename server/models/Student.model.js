@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const Cohort = require("./Cohort.model");
 const studentSchema = new Schema(
   {
     firstName: {
