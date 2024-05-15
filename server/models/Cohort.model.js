@@ -16,6 +16,10 @@ const cohortSchema = new Schema({
   },
   format: {
     type: String,
+    enum: ['Full Time,"Part Time'],
+  },
+  campus: {
+    type: String,
     enum: [
       "Madrid",
       "Barcelona",
@@ -27,7 +31,7 @@ const cohortSchema = new Schema({
       "Remote",
     ],
   },
-  startedDate: {
+  startDate: {
     type: Date,
     default: Date.now,
   },

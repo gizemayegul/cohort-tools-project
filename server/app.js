@@ -2,16 +2,19 @@ const express = require("express");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const PORT = 5005;
 const mongoose = require("mongoose");
 const studentRouter = require("./routes/students.routes");
 const cohortRouter = require("./routes/cohort.routes");
+const authRouter = require("./routes/auth.routes");
+const userRouter = require("./routes/user.routes");
 
-// STATIC DATA
-// Devs Team - Import the provided files with JSON data of students and cohorts here:
-// ...
-const students = require("./students.json");
-const cohorts = require("./cohorts.json");
+require("dotenv").config();
+
+const {
+  errorHandler,
+  notFoundHandler,
+} = require("./error-handling/error-handling");
+
 // INITIALIZE EXPRESS APP - https://expressjs.com/en/4x/api.html#express
 const app = express();
 
@@ -20,7 +23,7 @@ const app = express();
 // ...
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://127.0.0.1:5173"],
   })
 );
 app.use(express.json());
@@ -29,6 +32,20 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//ROUTES//Middlewares
+app.use("/docs", (req, res) => {
+  res.sendFile(__dirname + "/views/docs.html");
+});
+
+app.use("/", studentRouter);
+app.use("/", cohortRouter);
+app.use("/", authRouter);
+app.use("/", userRouter);
+
+//ERROR Middlewares
+app.use(errorHandler);
+app.use(notFoundHandler);
+
 //DATABASE
 
 mongoose
@@ -36,17 +53,7 @@ mongoose
   .then((x) => console.log(`Connected to Database: "${x.connections[0].name}"`))
   .catch((err) => console.error("Error connecting to MongoDB", err));
 
-// ROUTES - https://expressjs.com/en/starter/basic-routing.html
-// Devs Team - Start working on the routes here:
-// ...
-
-//ROUTES
-app.use("/", studentRouter);
-app.use("/", cohortRouter);
-
-//
-
 // START SERVER
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening on port ${process.env.PORT}`);
 });

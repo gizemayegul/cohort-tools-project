@@ -7,7 +7,7 @@ import CohortCard from "../components/CohortCard";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function CohortListPage() {
-  const [cohorts, setCohorts] = useState([]);
+  const [cohorts, setCohorts] = useState();
   const [campusQuery, setCampusQuery] = useState("");
   const [programQuery, setProgramQuery] = useState("");
 
@@ -60,15 +60,13 @@ function CohortListPage() {
       </div>
 
       {cohorts &&
-        cohorts.map(
-          (cohort, index) => (
-              <CohortCard
-                key={cohort._id}
-                {...cohort}
-                className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
-              />
-          )
-        )}
+        cohorts.map((cohort, index) => (
+          <CohortCard
+            key={cohort._id}
+            {...cohort}
+            className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
+          />
+        ))}
     </div>
   );
 }
