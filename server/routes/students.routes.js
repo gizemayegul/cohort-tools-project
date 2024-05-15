@@ -11,7 +11,7 @@ studentRouter.get("/api/students", (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      res.status(500).json({ error });
+      res.status(500).json(error);
     });
 });
 studentRouter.post("/api/students", (req, res) => {
@@ -29,9 +29,7 @@ studentRouter.post("/api/students", (req, res) => {
     projects: req.body.projects,
   })
     .then((response) => {
-      res
-        .status(200)
-        .json({ message: "succesfully created", response: response });
+      res.status(200).json(response);
     })
     .catch((error) => {
       console.log(error);
@@ -59,7 +57,7 @@ studentRouter.get("/api/students/:studentId", (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      res.status(500).json({ error });
+      res.status(500).json(error);
     });
 });
 studentRouter.put("/api/students/:studentId", (req, res) => {
@@ -83,13 +81,11 @@ studentRouter.put("/api/students/:studentId", (req, res) => {
     { new: true }
   )
     .then((response) => {
-      res
-        .status(200)
-        .json({ message: "succesfully updated", response: response });
+      res.status(200).json(response);
     })
     .catch((error) => {
       console.log(error);
-      res.status(500).json({ error });
+      res.status(500).json(error);
     });
 });
 
@@ -101,7 +97,7 @@ studentRouter.delete("/api/students/:studentId", (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      res.status(500).json({ error });
+      res.status(500).json(error);
     });
 });
 module.exports = studentRouter;
