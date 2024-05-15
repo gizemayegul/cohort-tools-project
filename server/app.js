@@ -18,6 +18,13 @@ const {
 // INITIALIZE EXPRESS APP - https://expressjs.com/en/4x/api.html#express
 const app = express();
 
+//DATABASE
+
+mongoose
+  .connect("mongodb://127.0.0.1:27017/cohort-tools-api")
+  .then((x) => console.log(`Connected to Database: "${x.connections[0].name}"`))
+  .catch((err) => console.error("Error connecting to MongoDB", err));
+
 // MIDDLEWARE
 // Research Team - Set up CORS middleware here:
 // ...
@@ -45,13 +52,6 @@ app.use("/", userRouter);
 //ERROR Middlewares
 app.use(errorHandler);
 app.use(notFoundHandler);
-
-//DATABASE
-
-mongoose
-  .connect("mongodb://127.0.0.1:27017/cohort-tools-api")
-  .then((x) => console.log(`Connected to Database: "${x.connections[0].name}"`))
-  .catch((err) => console.error("Error connecting to MongoDB", err));
 
 // START SERVER
 app.listen(process.env.PORT, () => {
