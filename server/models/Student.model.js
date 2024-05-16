@@ -35,8 +35,7 @@ const studentSchema = new Schema(
     },
     image: {
       type: String,
-      default:
-        "https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg ",
+      default: "https://i.imgur.com/r8bo8u7.png",
     },
     cohort: {
       type: Schema.Types.ObjectId,
