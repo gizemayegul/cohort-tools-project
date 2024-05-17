@@ -109,9 +109,4 @@ cohortRouter.delete("/api/cohorts/:cohortId", (req, res) => {
     });
 });
 
-cohortRouter.get("/api/cohorts", (req, res) => {
-  const { queryString } = req.query;
-  console.log(queryString);
-});
-
 module.exports = cohortRouter;
